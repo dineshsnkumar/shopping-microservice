@@ -1,7 +1,7 @@
 ### Description
 
-- A microservice based shopping application
+- Just another shopping microservice
 
 #### Purpose
 
-- The primary purpose of this project is to play with Apache Kafka 
+- The primary purpose of this project is to work with Apache Kafka 
