@@ -38,7 +38,7 @@ public class ProductService {
                 logger.info("Message sent to kafka " + res.getRecordMetadata());
             }
         });
-        return "";
+        return productId;
     }
 
 }
