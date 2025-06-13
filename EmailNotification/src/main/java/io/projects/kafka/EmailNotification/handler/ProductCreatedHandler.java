@@ -1,6 +1,7 @@
 package io.projects.kafka.EmailNotification.handler;
 
-import io.projects.kafka.EmailNotification.events.ProductCreatedEvent;
+
+import io.projects.core.events.ProductCreatedEvent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.kafka.annotation.KafkaHandler;

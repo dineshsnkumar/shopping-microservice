@@ -1,7 +1,7 @@
 package io.projects.products.service;
 
+import io.projects.core.events.ProductCreatedEvent;
 import io.projects.products.entity.Product;
-import io.projects.products.events.ProductCreatedEvent;
 import lombok.NoArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,6 +10,7 @@ import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.support.SendResult;
 import org.springframework.stereotype.Service;
 
+import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
 
 @Service
@@ -27,7 +28,7 @@ public class ProductService {
 
 
     public String create(Product product) {
-        String productId = "1";
+        String productId = UUID.randomUUID().toString();
         ProductCreatedEvent productCreatedEvent = new ProductCreatedEvent(productId, product.getTitle(), product.getPrice(), product.getQuantity());
         // TODO: save to Database
         CompletableFuture<SendResult<String, ProductCreatedEvent>> future = kafkaTemplate.send("product-created-topic", productId, productCreatedEvent);
