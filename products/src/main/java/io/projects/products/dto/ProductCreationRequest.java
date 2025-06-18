@@ -10,9 +10,10 @@ import java.math.BigDecimal;
 
 @NoArgsConstructor @AllArgsConstructor
 @Getter @Setter
-public class ProductDTO {
+public class ProductCreationRequest {
     private String title;
     @JsonFormat(shape=JsonFormat.Shape.STRING)
     private BigDecimal price;
     private Integer quantity;
+    private String description;
 }

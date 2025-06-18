@@ -1,7 +1,7 @@
 package io.projects.products.controller;
 
-import io.projects.products.dto.ProductDTO;
-import io.projects.products.entity.Product;
+import io.projects.products.dto.ProductCreatedResponse;
+import io.projects.products.dto.ProductCreationRequest;
 import io.projects.products.service.ProductService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -19,14 +19,13 @@ public class ProductController {
     private ProductService productService;
 
     @PostMapping
-    public ResponseEntity<String> create(@RequestBody ProductDTO productDTO){
-        Product product = new Product(productDTO.getTitle(), productDTO.getPrice(), productDTO.getQuantity());
-        return ResponseEntity.status(HttpStatus.CREATED).body(productService.create(product));
+    public ResponseEntity<ProductCreatedResponse> create(@RequestBody ProductCreationRequest productCreatedEvent){
+        return ResponseEntity.status(HttpStatus.CREATED).body(productService.create(productCreatedEvent));
     }
 
     @GetMapping
-    public ResponseEntity<List<ProductDTO>> getAllProducts(){
-        List<ProductDTO> productDTOList = new ArrayList<>();
+    public ResponseEntity<List<ProductCreationRequest>> getAllProducts(){
+        List<ProductCreationRequest> productDTOList = new ArrayList<>();
         return ResponseEntity.status(HttpStatus.OK).body(productDTOList);
     }
 }
