@@ -1,9 +1,6 @@
 package io.projects.products.entity;
 
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.*;
 
 import java.math.BigDecimal;
@@ -12,6 +9,7 @@ import java.math.BigDecimal;
 @AllArgsConstructor
 @Getter@Setter
 @Table(name = "products")
+@Entity
 public class ProductEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

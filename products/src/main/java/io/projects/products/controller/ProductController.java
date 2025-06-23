@@ -1,8 +1,9 @@
 package io.projects.products.controller;
 
-import io.projects.products.dto.ProductCreatedResponse;
-import io.projects.products.dto.ProductCreationRequest;
+import io.projects.products.dto.ProductResponseDTO;
+import io.projects.products.dto.ProductRequestDTO;
 import io.projects.products.service.ProductService;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,13 +20,13 @@ public class ProductController {
     private ProductService productService;
 
     @PostMapping
-    public ResponseEntity<ProductCreatedResponse> create(@RequestBody ProductCreationRequest productCreatedEvent){
+    public ResponseEntity<ProductResponseDTO> create(@RequestBody @Valid ProductRequestDTO productCreatedEvent){
         return ResponseEntity.status(HttpStatus.CREATED).body(productService.create(productCreatedEvent));
     }
 
-    @GetMapping
-    public ResponseEntity<List<ProductCreationRequest>> getAllProducts(){
-        List<ProductCreationRequest> productDTOList = new ArrayList<>();
+    @GetMapping("/{productId}")
+    public ResponseEntity<List<ProductRequestDTO>> getAllProducts(@PathVariable Long productId){
+        List<ProductRequestDTO> productDTOList = new ArrayList<>();
         return ResponseEntity.status(HttpStatus.OK).body(productDTOList);
     }
 }
