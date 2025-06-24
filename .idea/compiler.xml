@@ -10,7 +10,7 @@
         <module name="core" />
         <module name="products" />
       </profile>
-      <profile name="Annotation profile for payments" enabled="true">
+      <profile name="Annotation profile for orders" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
@@ -18,6 +18,7 @@
           <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.38/lombok-1.18.38.jar" />
         </processorPath>
         <module name="EmailNotification" />
+        <module name="orders" />
         <module name="payments" />
       </profile>
     </annotationProcessing>
@@ -26,6 +27,7 @@
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="EmailNotification" options="-parameters" />
       <module name="core" options="-parameters" />
+      <module name="orders" options="-parameters" />
       <module name="payments" options="-parameters" />
       <module name="products" options="-parameters" />
     </option>
