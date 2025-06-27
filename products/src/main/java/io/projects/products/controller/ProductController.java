@@ -4,7 +4,6 @@ import io.projects.products.dto.ProductResponseDTO;
 import io.projects.products.dto.ProductRequestDTO;
 import io.projects.products.service.ProductService;
 import jakarta.validation.Valid;
-import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,19 +13,32 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/products")
-@AllArgsConstructor
 public class ProductController {
 
-    private ProductService productService;
+    private final ProductService productService;
+
+    public ProductController(ProductService productService) {
+        this.productService = productService;
+    }
 
     @PostMapping
-    public ResponseEntity<ProductResponseDTO> create(@RequestBody @Valid ProductRequestDTO productCreatedEvent){
-        return ResponseEntity.status(HttpStatus.CREATED).body(productService.create(productCreatedEvent));
+    @ResponseStatus(HttpStatus.CREATED)
+    public ProductRequestDTO create(@RequestBody @Valid ProductRequestDTO productRequestDTO){
+        productService.create(productRequestDTO);
+        return productRequestDTO;
     }
 
     @GetMapping("/{productId}")
-    public ResponseEntity<List<ProductRequestDTO>> getAllProducts(@PathVariable Long productId){
-        List<ProductRequestDTO> productDTOList = new ArrayList<>();
+    public ResponseEntity<List<ProductResponseDTO>> getProductById(@PathVariable Long productId){
+        List<ProductResponseDTO> productDTOList = new ArrayList<>();
         return ResponseEntity.status(HttpStatus.OK).body(productDTOList);
     }
+
+    @GetMapping
+    public ResponseEntity<List<ProductResponseDTO>> getAllProducts(){
+        List<ProductResponseDTO> productDTOList = new ArrayList<>();
+        return ResponseEntity.status(HttpStatus.OK).body(productDTOList);
+    }
+
+
 }

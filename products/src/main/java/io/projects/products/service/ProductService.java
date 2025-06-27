@@ -32,7 +32,7 @@ public class ProductService {
         ProductEntity product = ProductsMapper.mapToProductEntity(productEntity, productCreationRequest);
         ProductEntity savedProduct = productRepository.save(product);
 
-        return new ProductResponseDTO();
+        return ProductsMapper.mapToProductDTO(savedProduct, new ProductResponseDTO());
     }
 
 }
